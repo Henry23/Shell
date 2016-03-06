@@ -8,6 +8,7 @@ int main(int argc, char const *argv[]) {
 }
 
 /*
+
 dev_t     st_dev     ID of device containing file
 ino_t     st_ino     file serial number
 mode_t    st_mode    mode of file (see below)
