@@ -7,12 +7,14 @@
 
 using namespace std;
 
-const string Commands[] = {"mkdir","cd","chmod","rmdir","rm","cat","ln","ps","kill","uname","ls"};
-const int Commands_size = 11;
+const string Commands[] = {"mkdir","cd","chmod","rmdir","rm","cat","ln","ps","kill","uname"};
+const int Commands_size = 10;
 char path[FILENAME_MAX];
 vector<string> split(string,char);
 int verify_Commands(string);
-void *mkdir(vector<string>);
+void mkdir(vector<string>);
+void rmdir(vector<string>);
+void rm(vector<string>);
 
 int main(int argc, char const *argv[]){
 	getcwd(path,sizeof(path));//get the path object from current path
@@ -45,7 +47,7 @@ int main(int argc, char const *argv[]){
 
 	    		}else if (Commands[index] == "rmdir")
 	    		{
-
+	    			rmdir(command);
 	    		}else if (Commands[index] == "rm")
 	    		{
 	    			
@@ -62,9 +64,6 @@ int main(int argc, char const *argv[]){
 	    		{
 	    			
 	    		}else if (Commands[index] == "uname")
-	    		{
-	    			
-	    		}else if (Commands[index] == "ls")
 	    		{
 	    			
 	    		}
@@ -109,7 +108,7 @@ int verify_Commands(string command)
 /*
 	mkdir
 */
-void *mkdir(vector<string> command ){
+void mkdir(vector<string> command ){
 	
 	if(command.size() == 2 )
 	{
@@ -117,9 +116,23 @@ void *mkdir(vector<string> command ){
 		if( !fork() )
 		{
 			string TO_EXEC_COMMAND = path;
-			TO_EXEC_COMMAND += "/mkDir";
+			TO_EXEC_COMMAND += "/mkdir";
 			execv(TO_EXEC_COMMAND.c_str(), argv);
 		}
 	}
-	return 0;
+}
+
+
+void rmdir(vector<string> command)
+{
+	if(command.size() == 2)
+	{
+
+	}else if (command.size() == 3)
+	{
+		if(command[2] == "-r" || command[2] == "-R")
+		{
+			cout << "hi there" << endl;
+		}
+	}
 }
