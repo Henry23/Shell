@@ -1,12 +1,9 @@
 # Shell
-Indicaciones
-1.	No debe usar los comandos ya creados ni las funciones de la consola. Usted debe codificar los comandos usando las llamadas al sistema del sistema operativo. No se puede usar la función system().
-2.	Para la tubería y el redireccionamiento debe usar las llamadas al sistema pipe(), dup().
-3.	Cada estudiante debe programar el 25% del proyecto. No se acepta que el estudiante SOLAMENTE haya investigado. Cada estudiante debe programar mínimo 4 comandos. Se hará una defensa para confirmar su programación. 
 
 Descripción del proyecto
 Diseñe la consola mi_sh> de manera que 
-1.	lea un comando [comando [opciones]] y valide si existe o no. Si existe ejecute el comando sino imprima “comando no encontrado”. Debe interpretar cada una de las opciones del comando
+1.	lea un comando [comando [opciones]] y valide si existe o no. Si existe ejecute el comando sino imprima “comando no encontrado”. 
+Debe interpretar cada una de las opciones del comando:
 
 Mi_sh> ls –l –m –t 
 
@@ -15,10 +12,8 @@ Debe implementar la auto-completación del comando.
 
 2.	Se puedan crear tuberías usando la siguiente sintaxis
 Comando1 argumentos1 | Comando2 argumentos2 |…| Comandom argumentosm
-
 3.	Se pueda re-direccionar la entrada estándar, la salida estándar y el error estándar a un archivo.
 Operadores de redireccionamiento: <, >, >&, >>, 2>&1
-
 4.	Además, debe implementar  los comandos (codificación del comando) y 
 a.	mkdir : crea un directorio con ruta absoluta o relativa
 b.	cd: cambiar de directorio
