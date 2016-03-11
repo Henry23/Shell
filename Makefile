@@ -1,7 +1,7 @@
 clean: shell
 		rm *.o
 
-shell: main.o mkdir rmdir
+shell: main.o mkdir rmdir rmdirR
 		g++ main.o -o shell
 
 main.o: main.cpp 
@@ -18,4 +18,10 @@ rmdir: rmdir.o
 
 rmdir.o: rmdir.cpp
 	     g++ -c rmdir.cpp
+
+rmdirR: rmdirR.o
+		g++ rmdirR.cpp -o rmdirR
+
+rmdirR.o: rmdirR.cpp
+		g++ -c rmdirR.cpp 	     
 
