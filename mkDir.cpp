@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sys/stat.h>
+#include <unistd.h>
 
 int main(int argc, char const *argv[]) {
 	if (mkdir(argv[0], S_IRUSR | S_IWUSR | S_IXUSR) == 0)
