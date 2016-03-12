@@ -15,7 +15,12 @@ int main(int argc, char const *argv[])
 	if ((dir = opendir((char *)path.c_str()))) 
 	{
 		ent = readdir(dir);
-		cout << ent->d_name << endl; 
+		if (ent->d_type == DT_DIR)
+		{
+			if( ((string)ent->d_name).compare(".") != 0 && ((string)ent->d_name).compare("..") != 0 )
+				list.push_back("/" +(string)ent->d_name);		
+		}else {}
+
 		//while (ent = readdir(dir))
 			/*if(ent->d_type == DT_DIR)
 			{
@@ -23,6 +28,12 @@ int main(int argc, char const *argv[])
 			} */
 		
 	}
-	closedir(dir);
+	closedir(dir); 
+	while( !list.empty() )
+	{
+		cout << "borrando" << endl;
+		rmdir((char *)list.back().c_str());
+		list.pop_back();
+	}
 	return 0;
 }
