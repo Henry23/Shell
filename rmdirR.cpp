@@ -3,37 +3,56 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <cstdlib>
-#include <vector>
+#include <stack>
+
 using namespace std;
+
+int rmdir_R(const char *);
 
 int main(int argc, char const *argv[])
 {
-	string path = "./" + (string)argv[0];
-	DIR *dir;
-	struct dirent *ent;
-	vector<string> list;
-	if ((dir = opendir((char *)path.c_str()))) 
-	{
-		ent = readdir(dir);
-		if (ent->d_type == DT_DIR)
-		{
-			if( ((string)ent->d_name).compare(".") != 0 && ((string)ent->d_name).compare("..") != 0 )
-				list.push_back("/" +(string)ent->d_name);		
-		}else {}
-
-		//while (ent = readdir(dir))
-			/*if(ent->d_type == DT_DIR)
-			{
-				cout << ent->d_name << endl;
-			} */
-		
-	}
-	closedir(dir); 
-	while( !list.empty() )
-	{
-		cout << "borrando" << endl;
-		rmdir((char *)list.back().c_str());
-		list.pop_back();
-	}
+	string root = "./" + (string)argv[0];
+	const char *path = (char *)root.c_str();
+	rmdir_R(path);	// recursively
 	return 0;
+}
+
+int rmdir_R(const char *path)
+{
+	DIR *dir = opendir(path);
+	size_t path_len = strlen(path);
+	int r = -1;
+	if (dir)
+	{
+		struct dirent *ent;
+		r = 0;
+		while (!r && (ent=readdir(dir)))
+		{
+			int r2 = -1;
+			char *buf;
+			size_t len;
+			if (!strcmp(ent->d_name, ".") || !strcmp(ent->d_name, ".."))
+				continue;
+			len = path_len + strlen(ent->d_name) + 2;
+          	buf = (char *)malloc(len);
+          	if (buf)
+          	{
+          		struct stat statbuf;
+          		snprintf(buf, len, "%s/%s", path, ent->d_name);
+          		if (!stat(buf, &statbuf))
+          		{
+          			if (S_ISDIR(statbuf.st_mode))
+          				r2 = rmdir_R(buf);
+          			else
+          				r2 = unlink(buf);
+          		}
+          		free(buf);
+          	}
+          	r = r2;
+          }
+      closedir(dir);
+  }
+  if (!r)
+  	r = rmdir(path);
+  return r;
 }
