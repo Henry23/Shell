@@ -4,6 +4,8 @@
 #include <dirent.h>
 #include <cstdlib>
 #include <stack>
+#include <cstring>
+#include <cstdio>
 
 using namespace std;
 
