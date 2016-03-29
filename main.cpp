@@ -20,6 +20,7 @@
 #include <grp.h>
 #include <sys/utsname.h>
 #include <fnmatch.h>
+#include <fcntl.h>
 
 using namespace std;
 
@@ -29,6 +30,11 @@ char path[FILENAME_MAX];
 vector<string> split(string,char);
 int verify_Commands(string);
 void mkdir(vector<string>);
+void mkdir2(vector<string>);
+void mkdir3(vector<string>);
+void mkdir4(vector<string>);
+void mkdir5(vector<string>);
+
 void cd(vector<string>);
 void chmod(vector<string>);
 void rmdir(vector<string>);
@@ -61,13 +67,153 @@ int main(int argc, char const *argv[]){
 		    }
 		    if( find(command.begin(), command.end(), ">" ) != command.end())
 		    {
-		    	cout << "hi there " << endl;
+		    		int index = verify_Commands(command[0]);
+		    	//cout << "index" << index << endl;
+		    	if(index != -1)
+		    	{
+		    		if( Commands[index] == "mkdir" )
+		    			mkdir2(command);
+		    		else if (Commands[index] == "cd" )
+		    			cd(command);
+		    		else if (Commands[index] == "chmod")
+		    			chmod(command);
+		    		else if (Commands[index] == "rmdir")
+		    			rmdir2(command);
+		    		else if (Commands[index] == "rm")
+		    			rm(command);
+		    		else if (Commands[index] == "cat")
+		    			cat(command);
+		    		else if (Commands[index] == "ln")
+		    			ln(command);
+		    		else if (Commands[index] == "ps")
+		    			ps(command);
+		    		else if (Commands[index] == "kill")
+		    			kill(command);
+		    		else if (Commands[index] == "uname")
+		    			uname(command);
+					else if (Commands[index] == "ls")
+		    			ls(command);
+		    		else if (Commands[index] == "exec")
+		    			exec(command);
+		    		else if (Commands[index] == "q"){
+		    			cout<<"Shell terminada"<<endl;
+		    			exit(0);
+		    		}
+		    		else
+		    			cout << "something must be wrong" << endl;
+		    	}else if (index == -1)
+		    			cout << "Command not found at "<< i << endl;
 		    }else if (find(command.begin(), command.end(), "<") != command.end()){
-	
+						int index = verify_Commands(command[0]);
+		    	//cout << "index" << index << endl;
+		    	if(index != -1)
+		    	{
+		    		if( Commands[index] == "mkdir" )
+		    			mkdir3(command);
+		    		else if (Commands[index] == "cd" )
+		    			cd(command);
+		    		else if (Commands[index] == "chmod")
+		    			chmod(command);
+		    		else if (Commands[index] == "rmdir")
+		    			rmdir3(command);
+		    		else if (Commands[index] == "rm")
+		    			rm(command);
+		    		else if (Commands[index] == "cat")
+		    			cat(command);
+		    		else if (Commands[index] == "ln")
+		    			ln(command);
+		    		else if (Commands[index] == "ps")
+		    			ps(command);
+		    		else if (Commands[index] == "kill")
+		    			kill(command);
+		    		else if (Commands[index] == "uname")
+		    			uname(command);
+					else if (Commands[index] == "ls")
+		    			ls(command);
+		    		else if (Commands[index] == "exec")
+		    			exec(command);
+		    		else if (Commands[index] == "q"){
+		    			cout<<"Shell terminada"<<endl;
+		    			exit(0);
+		    		}
+		    		else
+		    			cout << "something must be wrong" << endl;
+		    	}else if (index == -1)
+		    			cout << "Command not found at "<< i << endl;
 		    }else if(find(command.begin(), command.end(), ">&") != command.end()){
-	
+		int index = verify_Commands(command[0]);
+		    	//cout << "index" << index << endl;
+		    	if(index != -1)
+		    	{
+		    		if( Commands[index] == "mkdir" )
+		    			mkdir4(command);
+		    		else if (Commands[index] == "cd" )
+		    			cd(command);
+		    		else if (Commands[index] == "chmod")
+		    			chmod(command);
+		    		else if (Commands[index] == "rmdir")
+		    			rmdir4(command);
+		    		else if (Commands[index] == "rm")
+		    			rm(command);
+		    		else if (Commands[index] == "cat")
+		    			cat(command);
+		    		else if (Commands[index] == "ln")
+		    			ln(command);
+		    		else if (Commands[index] == "ps")
+		    			ps(command);
+		    		else if (Commands[index] == "kill")
+		    			kill(command);
+		    		else if (Commands[index] == "uname")
+		    			uname(command);
+					else if (Commands[index] == "ls")
+		    			ls(command);
+		    		else if (Commands[index] == "exec")
+		    			exec(command);
+		    		else if (Commands[index] == "q"){
+		    			cout<<"Shell terminada"<<endl;
+		    			exit(0);
+		    		}
+		    		else
+		    			cout << "something must be wrong" << endl;
+		    	}else if (index == -1)
+		    			cout << "Command not found at "<< i << endl;
 		    }else if(find(command.begin(), command.end(), ">>") != command.end()){
-	
+		int index = verify_Commands(command[0]);
+		    	//cout << "index" << index << endl;
+		    	if(index != -1)
+		    	{
+		    		if( Commands[index] == "mkdir" )
+		    			mkdir5(command);
+		    		else if (Commands[index] == "cd" )
+		    			cd(command);
+		    		else if (Commands[index] == "chmod")
+		    			chmod(command);
+		    		else if (Commands[index] == "rmdir")
+		    			rmdir5(command);
+		    		else if (Commands[index] == "rm")
+		    			rm(command);
+		    		else if (Commands[index] == "cat")
+		    			cat(command);
+		    		else if (Commands[index] == "ln")
+		    			ln(command);
+		    		else if (Commands[index] == "ps")
+		    			ps(command);
+		    		else if (Commands[index] == "kill")
+		    			kill(command);
+		    		else if (Commands[index] == "uname")
+		    			uname(command);
+					else if (Commands[index] == "ls")
+		    			ls(command);
+		    		else if (Commands[index] == "exec")
+		    			exec(command);
+		    		else if (Commands[index] == "q"){
+		    			cout<<"Shell terminada"<<endl;
+		    			exit(0);
+		    		}
+		    		else
+		    			cout << "something must be wrong" << endl;
+		    	}else if (index == -1)
+		    			cout << "Command not found at "<< i << endl;
 		    }else {
 		    	int index = verify_Commands(command[0]);
 		    	//cout << "index" << index << endl;
@@ -104,7 +250,7 @@ int main(int argc, char const *argv[]){
 		    		else
 		    			cout << "something must be wrong" << endl;
 		    	}else if (index == -1)
-		    			cout << "Command not found" << endl;
+		    			cout << "Command not found at "<< i << endl;
 		    }
 		    getcwd(path,sizeof(path));
 	    }
@@ -187,6 +333,73 @@ void mkdir(vector<string> command ){
 	}
 }
 
+void mkdir2(vector<string> command ){
+	vector<string> commandred = split(command[0], '>');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2 )
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 1);   // make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/mkdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}
+}
+void mkdir3(vector<string> command ){
+	vector<string> commandred = split(command[0], '<');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2 )
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 0);   // make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/mkdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}
+}
+void mkdir4(vector<string> command ){
+	vector<string> commandred = split(command[0], '&');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2 )
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 1); 
+			dup2(fd, 2);// make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/mkdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}
+}
+
+void mkdir5(vector<string> command ){
+	vector<string> commandred = split(command[0], '>');
+	int fd = open(commandred[2].c_str(), O_APPEND | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2 )
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 1); 
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/mkdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}
+}
+
 
 void rmdir(vector<string> command)
 {
@@ -206,6 +419,136 @@ void rmdir(vector<string> command)
 			char *argv[] = {(char *)command[2].c_str(), (char *)0};
 			if( !fork() )
 			{
+				string TO_EXEC_COMMAND = path;
+				TO_EXEC_COMMAND += "/rmdirR";
+				execv(TO_EXEC_COMMAND.c_str(), argv);
+			}
+		}
+	}
+}
+
+void rmdir2(vector<string> command)
+{
+	vector<string> commandred = split(command[0], '>');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2)
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{	
+			dup2(fd, 1);   // make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/rmdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}else if (command.size() == 3)
+	{
+		if(command[1] == "-r" || command[1] == "-R")
+		{
+			char *argv[] = {(char *)command[2].c_str(), (char *)0};
+			if( !fork() )
+			{
+				dup2(fd, 1);   // make stdout go to file
+				close(fd);
+				string TO_EXEC_COMMAND = path;
+				TO_EXEC_COMMAND += "/rmdirR";
+				execv(TO_EXEC_COMMAND.c_str(), argv);
+			}
+		}
+	}
+}
+
+void rmdir3(vector<string> command)
+{
+	vector<string> commandred = split(command[0], '<');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2)
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 0);   // make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/rmdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}else if (command.size() == 3)
+	{
+		if(command[1] == "-r" || command[1] == "-R")
+		{
+			char *argv[] = {(char *)command[2].c_str(), (char *)0};
+			if( !fork() )
+			{
+				dup2(fd, 0);   // make stdout go to file
+			close(fd);
+				string TO_EXEC_COMMAND = path;
+				TO_EXEC_COMMAND += "/rmdirR";
+				execv(TO_EXEC_COMMAND.c_str(), argv);
+			}
+		}
+	}
+}
+
+void rmdir4(vector<string> command)
+{
+	vector<string> commandred = split(command[0], '&');
+	int fd = open(commandred[1].c_str(), O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2)
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 1); 
+			dup2(fd, 2);// make stdout go to file
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/rmdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}else if (command.size() == 3)
+	{
+		if(command[1] == "-r" || command[1] == "-R")
+		{
+			char *argv[] = {(char *)command[2].c_str(), (char *)0};
+			if( !fork() )
+			{
+				dup2(fd, 1); 
+				dup2(fd, 2);// make stdout go to file
+				close(fd);
+				string TO_EXEC_COMMAND = path;
+				TO_EXEC_COMMAND += "/rmdirR";
+				execv(TO_EXEC_COMMAND.c_str(), argv);
+			}
+		}
+	}
+}
+
+void rmdir5(vector<string> command)
+{
+	vector<string> commandred = split(command[0], '>');
+	int fd = open(commandred[2].c_str(), O_APPEND | O_CREAT, S_IRUSR | S_IWUSR);
+	if(command.size() == 2)
+	{
+		char *argv[] = {(char *)command[1].c_str(), (char *)0};
+		if( !fork() )
+		{
+			dup2(fd, 1); 
+			close(fd);
+			string TO_EXEC_COMMAND = path;
+			TO_EXEC_COMMAND += "/rmdir";
+			execv(TO_EXEC_COMMAND.c_str(), argv);
+		}
+	}else if (command.size() == 3)
+	{
+		if(command[1] == "-r" || command[1] == "-R")
+		{
+			char *argv[] = {(char *)command[2].c_str(), (char *)0};
+			if( !fork() )
+			{
+				dup2(fd, 1); 
+				close(fd);
 				string TO_EXEC_COMMAND = path;
 				TO_EXEC_COMMAND += "/rmdirR";
 				execv(TO_EXEC_COMMAND.c_str(), argv);
